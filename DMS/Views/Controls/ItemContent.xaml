@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="DMS.Views.Controls.ItemContent">
+    <VerticalStackLayout Spacing="10" Margin="20,20,20,0">
+
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Stroke" Value="#DDDDDD" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="12" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </VerticalStackLayout.Resources>
+
+
+        
+
+            <Border >
+
+                <HorizontalStackLayout>
+                    <Label Text="Item Name" VerticalOptions="Center" x:Name="lblItemName" WidthRequest="100"></Label>
+                    <Entry x:Name="entItemName" VerticalOptions="Center">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior
+                        x:Name="nameValidator"
+                        MinimumLength="1"
+                        Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                        />
+
+
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border >
+
+                <HorizontalStackLayout>
+                    <Label Text="Item Code" VerticalOptions="Center" x:Name="lblItemCode" WidthRequest="100"></Label>
+                    <Entry x:Name="entItemCode" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border >
+
+                <HorizontalStackLayout>
+                    <Label Text="Description" VerticalOptions="Center" x:Name="lblDescription" WidthRequest="100"></Label>
+                    <Entry x:Name="entDescription" VerticalOptions="Center"></Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <Border >
+
+                <HorizontalStackLayout>
+                    <Label Text="Price" VerticalOptions="Center" x:Name="lblPrice" WidthRequest="100"></Label>
+                    <Entry x:Name="entPrice" VerticalOptions="Center">
+                        <Entry.Behaviors>
+                            <toolkit:TextValidationBehavior 
+                            x:Name="priceValidator"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                            MinimumLength="1"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+            </Border>
+            <HorizontalStackLayout Spacing="10">
+
+                <Button BackgroundColor="Red" x:Name="Cancel" Text="Cancel" HorizontalOptions="Center" Clicked="Cancel_Clicked"/>
+                <Button x:Name="btnSave" Text="Save" HorizontalOptions="Center" Clicked="btnSave_Clicked"/>
+            </HorizontalStackLayout>
+        
+    </VerticalStackLayout>
+</ContentView>

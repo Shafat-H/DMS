@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMS.Views.ItemPage"
+             Title="Item List">
+    <Grid RowDefinitions="50,*,80" ColumnDefinitions="*" Padding="5">
+
+        <SearchBar Grid.Row="0" Grid.Column="0" x:Name="ItemSearch" Placeholder="Search Item" TextChanged="ItemSearch_TextChanged">
+            
+        </SearchBar>
+
+        <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+            x:Name="itemList"
+            SeparatorColor="Black"
+            SeparatorVisibility="Default"
+            
+              RowHeight="100"
+              ItemSelected="itemList_ItemSelected"
+              ItemTapped="itemList_ItemTapped"
+              BackgroundColor="Transparent">
+            <!--Margin="15,0,15,0"-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell >
+                        <Border Stroke="Gray" StrokeThickness="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                            <Grid RowDefinitions="30,*" ColumnDefinitions="*" Margin="5">
+
+
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+                                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="End" VerticalTextAlignment="Center" Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Blue"/>
+                                <Label Grid.Row="1" Text="{Binding Description}" FontSize="Small" TextColor="Gray"/>
+
+                            </Grid>
+
+                        </Border>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="MenuItem_Clicked" CommandParameter="{Binding .}" />
+
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+
+
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button BackgroundColor="Transparent" HeightRequest="100" WidthRequest="100" x:Name="btnAdd" Grid.Row="2" Grid.Column="0" Clicked="btnAdd_Clicked"  VerticalOptions="Center" 
+        HorizontalOptions="End">
+            <Button.ImageSource>
+                <FileImageSource>plus.png</FileImageSource>
+            </Button.ImageSource>
+        </Button>
+    </Grid>
+</ContentPage>
