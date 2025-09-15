@@ -45,7 +45,7 @@ public partial class ItemPage : ContentPage
         {
             //Shell.Current.GoToAsync(nameof(ItemAddPage));
 
-            var selectedItem = ((ItemDto)itemList.SelectedItem).Id;
+            var selectedItem = ((tblItem)itemList.SelectedItem).Id;
             await Shell.Current.GoToAsync($"{nameof(ItemEditPage)}?Id={selectedItem}");
         }
     }
