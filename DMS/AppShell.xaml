@@ -18,5 +18,6 @@
      ContentTemplate="{DataTemplate views:ItemPage}"
      Route="ItemPage"
      />
+    <MenuItem Text="Log out" Clicked="MenuItem_Clicked"  IconImageSource="logout.png"/>
 
 </Shell>

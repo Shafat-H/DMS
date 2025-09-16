@@ -1,4 +1,7 @@
-﻿namespace DMS
+﻿using DMS.UseCases.Interface;
+using DMS.Views;
+
+namespace DMS
 {
     public partial class App : Application
     {
@@ -9,7 +12,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            //return new Window(new AppShell());
+            return new Window(new DashboardPage());
         }
     }
 }

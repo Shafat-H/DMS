@@ -75,6 +75,9 @@
 	  <MauiXaml Update="Views\Controls\ItemContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DashboardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ItemAddPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
