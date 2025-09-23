@@ -16,5 +16,17 @@ namespace DMS.UseCases
         {
             return await _itemRepository.GetItemsAsync(filterText);
         }
+        public async Task UpdateAsync(long ItemId, tblItem item)
+        {
+            await _itemRepository.UpdateItem(ItemId, item);
+        }
+        public async Task DeleteAsync(long id)
+        {
+            await _itemRepository.DeleteItem(id);
+        }
+        public async Task<tblItem> GetAsync(long id)
+        {
+            return await _itemRepository.getItemById(id);
+        }
     }
 }

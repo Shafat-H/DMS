@@ -8,12 +8,13 @@ namespace DMS
         public App()
         {
             InitializeComponent();
+            Application.Current.UserAppTheme = AppTheme.Light;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
             //return new Window(new AppShell());
-            return new Window(new DashboardPage());
+            return new Window(new LoginPage());
         }
     }
 }

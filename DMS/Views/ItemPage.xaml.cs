@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using DMS.CoreBusiness;
-using DMS.Models;
 using DMS.UseCases.Interface;
 
 namespace DMS.Views;
@@ -63,18 +62,18 @@ public partial class ItemPage : ContentPage
     private void MenuItem_Clicked(object sender, EventArgs e)
     {
         var menuItem = sender as MenuItem;
-        var item = menuItem?.BindingContext as ItemDto;
+        var item = menuItem?.BindingContext as tblItem;
 
         if (item != null)
         {
-            ItemRepository.DeleteItem(item.Id);
+            _repository.DeleteAsync(item.Id);
         }
         LoadItem();
     }
 
-    private void ItemSearch_TextChanged(object sender, TextChangedEventArgs e)
+    private async void ItemSearch_TextChanged(object sender, TextChangedEventArgs e)
     {
-        var dt = new ObservableCollection<ItemDto>(ItemRepository.SearchItem(((SearchBar)sender).Text));
+        var dt = new ObservableCollection<tblItem>(await _repository.ExecuteAsynac(((SearchBar)sender).Text));
         itemList.ItemsSource = dt;
     }
 }

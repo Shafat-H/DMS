@@ -21,5 +21,44 @@ namespace DMS.Plugins.DataStore.InMemory
             var dt = items.Where(x => string.IsNullOrEmpty(filterText) || x.Name.ToLower().Contains(filterText.ToLower())).ToList();
             return Task.FromResult(dt);
         }
+        public async Task UpdateItem(long ItemId, tblItem item)
+        {
+            if (ItemId == 0)
+            {
+                var maxId = items.Max(i => i.Id);
+                item.Id = maxId + 1;
+                item.Name = item.Name;
+                item.Code = item.Code;
+                item.Description = item.Description;
+                item.Price = item.Price;
+                items.Add(item);
+            }
+            if (ItemId != item.Id)
+            {
+
+            }
+            var SingleItem = items.FirstOrDefault(i => i.Id == ItemId);
+            if (SingleItem != null)
+            {
+                SingleItem.Name = item.Name;
+                SingleItem.Code = item.Code;
+                SingleItem.Description = item.Description;
+                SingleItem.Price = item.Price;
+            }
+        }
+        public async Task DeleteItem(long id)
+        {
+            var item = items.FirstOrDefault(i => i.Id == id);
+            if (item != null)
+            {
+                items.Remove(item);
+            }
+        }
+        public async Task<tblItem> getItemById(long id)
+        {
+            var item = items.FirstOrDefault(i => i.Id == id);
+            var dt = new tblItem { Id = item.Id, Name = item.Name, Code = item.Code, Description = item.Description, Price = item.Price };
+            return dt;
+        }
     }
 }

@@ -5,19 +5,77 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DMS"
     xmlns:views="clr-namespace:DMS.Views"
+    xmlns:views2="clr-namespace:DMS.View_MVVM"
     Shell.FlyoutBehavior="Flyout"
     Title="DMS">
+    <!--xmlns:views="clr-namespace:DMS.Views"-->
 
     <!--<ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />-->
+    <!--<Shell.FlyoutBackgroundColor>
+        <Color>skyBlue</Color>
 
+
+    </Shell.FlyoutBackgroundColor>-->
+    <Shell.FlyoutHeader>
+        <StackLayout HeightRequest="100">
+            <Border
+                WidthRequest="64" HeightRequest="64"
+                StrokeShape="Ellipse"
+                BackgroundColor="#EEF2FF"
+                Stroke="#E0E7FF"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="0,6,0,14">
+                <Image Source="profile.png" 
+                    Aspect="AspectFill" 
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="Fill" />
+                <!--<ActivityIndicator IsRunning="True" IsVisible="True" />-->
+            </Border>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="Dashboard">
+
+
+        <ShellContent
+            Title="Dashboard"
+            ContentTemplate="{DataTemplate views:DashboardPage}"
+            Route="DashboardPage"/>
+
+    </FlyoutItem>
+    <FlyoutItem Title="MVVM_Item">
+
+
+        <ShellContent
+        Title="MVVM_Item"
+        ContentTemplate="{DataTemplate views2:Item_MVVM_Page}"
+        Route="Item_MVVM_Page"/>
+
+    </FlyoutItem>
+    <FlyoutItem Title="Configuration">
+        <ShellContent
+            Title="Item"
+            ContentTemplate="{DataTemplate views:ItemPage}"
+            Route="ItemPage"/>
+    </FlyoutItem>
     <ShellContent
-     Title="Item"
-     ContentTemplate="{DataTemplate views:ItemPage}"
-     Route="ItemPage"
+        Title="Dashboard"
+        ContentTemplate="{DataTemplate views:DashboardPage}"
+        Route="DashboardPage"
+    />
+    <ShellContent
+        Title="Item"
+        ContentTemplate="{DataTemplate views:ItemPage}"
+        Route="ItemPage"
      />
-    <MenuItem Text="Log out" Clicked="MenuItem_Clicked"  IconImageSource="logout.png"/>
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="10">
+            <Button BackgroundColor="Red" Text="Logout" Clicked="MenuItem_Clicked" />
+            <Label Text="Version 1.0" HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
 
 </Shell>

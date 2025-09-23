@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMS.View_MVVM.Item_MVVM_Page"
+             xmlns:vm="clr-namespace:DMS.View_MVVM" 
+             x:DataType="vm:ItemsViewModel"
+             xmlns:m="clr-namespace:DMS.CoreBusiness;assembly=DMS.CoreBusiness"
+             Title="Item_MVVM_Page">
+    <Grid RowDefinitions="50,*,80" ColumnDefinitions="*" Padding="5">
+
+        <SearchBar Grid.Row="0" Grid.Column="0" x:Name="ItemSearch" Placeholder="Search Item" />
+
+        <CollectionView
+            x:Name="ItemCollection"
+            Grid.Row="1" 
+                        Grid.Column="0"
+                        ItemsSource="{Binding items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:tblItem">
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem Text="Delete"
+                                           IsDestructive="True"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={x:Reference ItemCollection}, Path=BindingContext.DeleteItemCommand}"
+                                           CommandParameter="{Binding Id}">
+
+                                </SwipeItem>
+                                <SwipeItem Text="Edit"
+                                           BackgroundColor="LightGray">
+
+                                </SwipeItem>
+                            </SwipeView.RightItems>
+                            <StackLayout>
+                                <Border Margin="0,5,0,5">
+                                    <StackLayout Orientation="Vertical" Margin="10">
+                                        <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Price} "></Label>
+                                    </StackLayout>
+                                </Border>
+                            </StackLayout>
+                        </SwipeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <Button BackgroundColor="Transparent" 
+                HeightRequest="100" 
+                WidthRequest="100" 
+                x:Name="btnAdd" 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                
+                VerticalOptions="Center" 
+                HorizontalOptions="End">
+            <Button.ImageSource>
+                <FileImageSource>plus.png</FileImageSource>
+            </Button.ImageSource>
+        </Button>
+    </Grid>
+</ContentPage>

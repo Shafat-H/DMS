@@ -1,26 +1,30 @@
 using System.Threading.Tasks;
-using DMS.Models;
+using DMS.CoreBusiness;
+using DMS.UseCases.Interface;
 
 namespace DMS.Views;
 
 public partial class ItemAddPage : ContentPage
 {
-    private ItemDto currentItem;
-    public ItemAddPage()
+    private readonly IViewItemUseCase _repository;
+
+    private tblItem currentItem;
+    public ItemAddPage(IViewItemUseCase repository)
     {
         InitializeComponent();
+        _repository = repository;
     }
 
-    private void controlCtrl_onSave(object sender, EventArgs e)
+    private async void controlCtrl_onSave(object sender, EventArgs e)
     {
-        ItemRepository.AddItem(new ItemDto
+        await _repository.UpdateAsync(0, new tblItem
         {
             Name = controlCtrl.Name,
             Code = controlCtrl.ItemCode,
             Description = controlCtrl.Description,
             Price = decimal.Parse(controlCtrl.Price)
         });
-        Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("..");
     }
 
     private void controlCtrl_onCancel(object sender, EventArgs e)

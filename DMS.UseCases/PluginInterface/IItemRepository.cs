@@ -10,5 +10,8 @@ namespace DMS.UseCases.PluginsInterface
     public interface IItemRepository
     {
         Task<List<tblItem>> GetItemsAsync(string filterText);
+        Task UpdateItem(long ItemId, tblItem item);
+        Task DeleteItem(long id);
+        Task<tblItem> getItemById(long id);
     }
 }

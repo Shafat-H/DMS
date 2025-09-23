@@ -1,4 +1,5 @@
-using DMS.Models;
+using DMS.CoreBusiness;
+using DMS.UseCases.Interface;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace DMS.Views;
@@ -6,15 +7,17 @@ namespace DMS.Views;
 [QueryProperty(nameof(Ids), "Id")]
 public partial class ItemEditPage : ContentPage
 {
-    private ItemDto currentItem;
-    public ItemEditPage()
+    private readonly IViewItemUseCase _repository;
+    private tblItem currentItem;
+    public ItemEditPage(IViewItemUseCase repository)
     {
         InitializeComponent();
+        _repository = repository;
     }
 
     private void controlCtrl_onSave(object sender, EventArgs e)
     {
-        ItemRepository.UpdateItem(currentItem.Id, new ItemDto
+        _repository.UpdateAsync(currentItem.Id, new tblItem
         {
             Id = currentItem.Id,
             Name = controlCtrl.Name,
@@ -39,7 +42,8 @@ public partial class ItemEditPage : ContentPage
     {
         set
         {
-            currentItem = ItemRepository.getItemById(value);
+            var currentItem = _repository.GetAsync(value).GetAwaiter().GetResult(); // Use await properly
+
             if (currentItem != null)
             {
                 controlCtrl.Name = currentItem.Name;
@@ -49,4 +53,5 @@ public partial class ItemEditPage : ContentPage
             }
         }
     }
+
 }
